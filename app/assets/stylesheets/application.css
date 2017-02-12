@@ -14,19 +14,24 @@
  *= require_self
  */
 
- .creepy-horse-container {
+ .sidekiq-player-container {
   background-color: #FCFCFC;
  }
 
-.creepy-horse {
+.sidekiq-player {
   height: 115px;
   margin-bottom: 15px;
 }
 
-.color-horse-container {
+.delayedjob-player-container {
   background-color: #FBEDCB;
 }
 
-.color-horse {
-  height: 125px;
+.delayedjob-player {
+  height: 150px;
+}
+
+.go {
+  height: 2.4375rem;
+  width: 50%;
 }

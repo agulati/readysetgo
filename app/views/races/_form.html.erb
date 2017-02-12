@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="columns">
+    <%= form_for(@race) do |f| %>
+      <div class="row" data-equalizer>
+        <div class="small-3 columns" data-equalizer-watch>
+          <%= f.label :distance, "How far are we going today?", class: "middle" %>
+        </div>
+        <div class="small-6 columns" data-equalizer-watch>
+          <%= f.number_field :distance, placeholder: "every step counts" %>
+        </div>
+        <div class="small-3 columns" data-equalizer-watch>
+          <%= f.submit "Go!", class: "go" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

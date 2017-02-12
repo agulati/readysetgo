@@ -1,5 +1,11 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
-  resources :races, only: [:new]
+  mount Sidekiq::Web => '/sidekiq'
+
+  resources :races, only: [:new, :create, :show] do
+    get :run
+  end
 
   root to: "races#new"
 end

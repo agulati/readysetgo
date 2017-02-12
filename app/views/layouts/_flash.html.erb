@@ -1,0 +1,12 @@
+<% unless flash.empty? %>
+  <% flash.each do |name, msg| %>
+    <div class="alert callout" data-closable>
+      <%= msg.html_safe %>
+      <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <% end %>
+
+  <% flash.clear %>
+<% end %>

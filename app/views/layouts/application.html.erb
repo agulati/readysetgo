@@ -1,14 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Ready, Set, Go!</title>
-    <%= csrf_meta_tags %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
+    <title>Ready, Set, Go!</title>
+
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": true %>
+    <%= csrf_meta_tags %>
+    <%= yield :head %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="row columns header">
+      <h1>Ready, Set, Go!</h1>
+    </div>
+    <div id="flash-container" class="row columns small-8 small-offset-2">
+      <%= render partial: "layouts/flash" %>
+    </div>
+    <div class="row columns">
+      <%= yield %>
+    </div>
+
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= yield :after_javascript %>
   </body>
 </html>

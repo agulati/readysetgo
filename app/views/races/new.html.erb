@@ -1,6 +1,6 @@
-<div class="creepy-horse-container">
-  <%= image_tag "nC19NEgcm3Pqw.gif", class: "creepy-horse" %>
-</div>
-<div class="color-horse-container">
-  <%= image_tag "fLnuqeoerMDJe.gif", class: "color-horse" %>
-</div>
+<%= render partial: "form" %>
+<div class="row columns"><hr/></div>
+<%= render partial: "lane", locals: { player: "sidekiq" } %>
+<div class="row columns"><hr/></div>
+<%= render partial: "lane", locals: { player: "delayedjob" } %>
+<div class="row columns"><hr/></div>

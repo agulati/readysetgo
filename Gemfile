@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem "rails",                    "~> 5.0.1"
-gem "sqlite3"
+gem "mysql2"
 gem "puma",                     "~> 3.0"
 gem "sass-rails",               "~> 5.0"
 gem "uglifier",                 ">= 1.3.0"
@@ -10,8 +10,10 @@ gem "coffee-rails",             "~> 4.2"
 gem "therubyracer",                           platforms: :ruby
 gem "jquery-rails"
 gem "turbolinks",               "~> 5"
+gem "active_model_serializers"
 
 gem "redis",                    "~> 3.0"
+gem "redis-namespace"
 gem "bcrypt",                   "~> 3.1.7"
 
 group :development, :test do
@@ -29,4 +31,6 @@ end
 gem "tzinfo-data",                            platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "sidekiq"
+gem "daemons"
 gem "delayed_job"
+gem "delayed_job_active_record"
