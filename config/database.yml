@@ -9,6 +9,7 @@ default: &default
 development:
   <<: *default
   database: readysetgo_development
+  pool: 50
 
 test:
   <<: *default

@@ -7,7 +7,10 @@
       <div class="small-6 columns" data-equalizer-watch>
         <h4>Distance: <%= @race.distance %><h4>
       </div>
-      <div class="small-3 columns" data-equalizer-watch></div>
+      <div class="small-3 columns" data-equalizer-watch>
+        <%= link_to "View Results", races_path, class: "button" %>
+        <%= link_to "New Race", new_race_path, class: "button secondary" %>
+      </div>
     </div>
   </div>
 </div>
@@ -26,8 +29,9 @@
     }
 
     var refreshPage = function () {
-      var sidekiq_done = false
+      var sidekiq_done    = false
       var delayedjob_done = false
+
       $.ajax({
         url: "<%= race_run_path(@race.id) %>"
       }).done(function (data) {
@@ -41,11 +45,19 @@
         $(".delayedjob-player").animate({
           marginLeft: calculateMovement(data.delayedjob_player, data.distance)
         }, 5000)
-      })
 
-      if ( !sidekiq_done && !delayedjob_done ) {
-        setTimeout(refreshPage, 5000)
-      }
+        if (sidekiq_done && !delayedjob_done) {
+          $(".sidekiq-player").addClass("winner")
+          $(".delayedjob_player").addClass("loser")
+        }
+
+        if (!sidekiq_done && delayedjob_done) {
+          $(".sidekiq-player").addClass("loser")
+          $(".delayedjob_player").addClass("winner")
+        }
+
+        if (!sidekiq_done && !delayedjob_done) { setTimeout(refreshPage, 5000) }
+      })
     }
 
     refreshPage()

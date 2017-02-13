@@ -1,9 +1,9 @@
 class Player < ActiveRecord::Base
-  validates :position, presence: true
+  has_many :steps
 
-  def self.advance player_id, position
+  def self.advance player_id
     player = find(player_id)
-    player.update_attributes(position: position)
+    player.steps << Step.create(player: player)
   end
 
   def run
@@ -12,5 +12,13 @@ class Player < ActiveRecord::Base
 
   def done?
     position >= race.distance
+  end
+
+  def position
+    steps.length
+  end
+
+  def finish_time
+    steps.maximum(:created_at)
   end
 end

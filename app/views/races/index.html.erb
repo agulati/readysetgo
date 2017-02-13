@@ -1,0 +1,48 @@
+<div class="row columns new-race">
+  <%= link_to "New Race", new_race_path, class: "button" %>
+</div>
+<div class="row columns">
+  <table class="races-table">
+    <thead>
+      <tr>
+        <th class="text-center" width="10%">#</th>
+        <th width="10%">Distance</th>
+        <th width="30%">Sidekiq Finish</th>
+        <th width="30%">Delayed Job Finish</th>
+        <th width="20%">Time Diff (s)</th>
+      </tr>
+    </thead>
+    <tbody class="races">
+      <% @races.each do |race| %>
+        <tr class="race-row" data-href="<%= race_path(race) %>">
+          <td class="text-center">
+            <%= race.id %>
+          </td>
+          <td class="text-right">
+            <%= race.distance %>
+          </td>
+          <td class="text-center <%= format_racer(race, "sidekiq") %>">
+            <%= race.sidekiq_player.finish_time.strftime("%Y-%m-%d %H:%M:%S") %>
+          </td>
+          <td class="text-center <%= format_racer(race, "delayedjob") %>">
+            <%= race.delayedjob_player.finish_time.strftime("%Y-%m-%d %H:%M:%S") %>
+          </td>
+          <td class="text-right">
+            <%= race.sidekiq_player.finish_time - race.delayedjob_player.finish_time %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="row columns new-race">
+  <%= link_to "New Race", new_race_path, class: "button" %>
+</div>
+
+<% content_for :after_javascript do %>
+  <script type="text/javascript">
+    $("tbody.races").on("click", "tr.race-row", function () {
+       window.document.location = $(this).data("href");
+    })
+  </script>
+<% end %>

@@ -14,6 +14,10 @@
  *= require_self
  */
 
+ .header {
+  margin-top: 20px;
+ }
+
  .sidekiq-player-container {
   background-color: #FCFCFC;
  }
@@ -34,4 +38,39 @@
 .go {
   height: 2.4375rem;
   width: 50%;
+}
+
+.new-race {
+  margin: 10px 0;
+}
+
+img.winner {
+  border: 5px solid #A9DFBF;
+  border-radius: 5px;
+}
+
+img.loser {
+  border: 5px solid #E6B0AA;
+  border-radius: 5px;
+}
+
+.races-table {
+  width: 60%;
+  margin-top: 50px;
+}
+
+.races-table td, th{
+  border: 2px solid #fff;
+}
+
+tr.race-row {
+  cursor: pointer;
+}
+
+td.winner {
+  background-color: #A9DFBF;
+}
+
+td.loser {
+  background-color: #E6B0AA;
 }
