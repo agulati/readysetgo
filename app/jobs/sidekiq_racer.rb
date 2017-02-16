@@ -4,5 +4,6 @@ class SidekiqRacer
 
   def perform player_id
     SidekiqPlayer.advance(player_id)
+    sleep($redis.get("wait-time") || 0)
   end
 end

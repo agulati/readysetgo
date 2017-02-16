@@ -35,6 +35,7 @@
       $.ajax({
         url: "<%= race_run_path(@race.id) %>"
       }).done(function (data) {
+        console.log(data)
         sidekiq_done    = data.sidekiq_player     >= data.distance
         delayedjob_done = data.delayedjob_player  >= data.distance
 
@@ -48,15 +49,17 @@
 
         if (sidekiq_done && !delayedjob_done) {
           $(".sidekiq-player").addClass("winner")
-          $(".delayedjob_player").addClass("loser")
+          $(".delayedjob-player").addClass("loser")
         }
 
         if (!sidekiq_done && delayedjob_done) {
           $(".sidekiq-player").addClass("loser")
-          $(".delayedjob_player").addClass("winner")
+          $(".delayedjob-player").addClass("winner")
         }
 
-        if (!sidekiq_done && !delayedjob_done) { setTimeout(refreshPage, 5000) }
+        if (!sidekiq_done || !delayedjob_done) {
+          setTimeout(refreshPage, 5000)
+        }
       })
     }
 

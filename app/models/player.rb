@@ -21,4 +21,12 @@ class Player < ActiveRecord::Base
   def finish_time
     steps.maximum(:created_at)
   end
+
+  def start_time
+    steps.minimum(:created_at)
+  end
+
+  def duration
+    finish_time - start_time
+  end
 end

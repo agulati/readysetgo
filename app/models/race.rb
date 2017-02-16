@@ -52,4 +52,8 @@ class Race < ApplicationRecord
       end
     end
   end
+
+  def duration_percentage
+    send("#{winner}_player".to_sym).duration / send("#{loser}_player".to_sym).duration * 100
+  end
 end

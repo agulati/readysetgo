@@ -7,9 +7,11 @@
       <tr>
         <th class="text-center" width="10%">#</th>
         <th width="10%">Distance</th>
-        <th width="30%">Sidekiq Finish</th>
-        <th width="30%">Delayed Job Finish</th>
-        <th width="20%">Time Diff (s)</th>
+        <th width="20%">Start Time</th>
+        <th width="20%">Sidekiq Finish</th>
+        <th width="20%">Delayed Job Finish</th>
+        <th width="15%">Time Diff (s)</th>
+        <th width="15%">% Diff</th>
       </tr>
     </thead>
     <tbody class="races">
@@ -21,14 +23,20 @@
           <td class="text-right">
             <%= race.distance %>
           </td>
+          <td class="text-center %>">
+            <%= race.created_at.strftime("%m/%d/%y %H:%M:%S") %>
+          </td>
           <td class="text-center <%= format_racer(race, "sidekiq") %>">
-            <%= race.sidekiq_player.finish_time.strftime("%Y-%m-%d %H:%M:%S") %>
+            <%= race.sidekiq_player.finish_time.strftime("%m/%d/%y %H:%M:%S") %>
           </td>
           <td class="text-center <%= format_racer(race, "delayedjob") %>">
-            <%= race.delayedjob_player.finish_time.strftime("%Y-%m-%d %H:%M:%S") %>
+            <%= race.delayedjob_player.finish_time.strftime("%m/%d/%y %H:%M:%S") %>
           </td>
           <td class="text-right">
             <%= race.sidekiq_player.finish_time - race.delayedjob_player.finish_time %>
+          </td>
+          <td class="text-right">
+            <%= "%.2f" % race.duration_percentage %>%
           </td>
         </tr>
       <% end %>

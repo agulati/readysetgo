@@ -4,5 +4,7 @@ class CreateStep < ActiveRecord::Migration[5.0]
       t.integer :player_id
       t.timestamps
     end
+
+    add_index(:steps, :player_id)
   end
 end

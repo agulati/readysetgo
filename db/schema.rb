@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20170213144025) do
     t.integer  "player_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "idx_steps_player", using: :btree
   end
 
 end
