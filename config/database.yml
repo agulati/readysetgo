@@ -3,7 +3,7 @@ default: &default
   username: root
   password: tunecore
   encoding: utf8
-  adapter: mysql2
+  adapter: postgresql
   port: 3306
 
 development:
